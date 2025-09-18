@@ -31,17 +31,26 @@ function playRound(humanChoice, computerChoice) {
 let humanScore = 0;
 let computerScore = 0;
 
-function playGame() {
-	for (let i = 0; i < 5; i++) {
-		const humanSelection = getHumanChoice().toLowerCase();
-		const computerSelection = getComputerChoice().toLowerCase();
-		playRound(humanSelection, computerSelection);
-	}
-	if (humanScore > computerScore) {
-		console.log(`Congratulations! You win with a score of ${humanScore} to ${computerScore}.`);
-	} else if (humanScore < computerScore) {
-		console.log(`You lose with a score of ${humanScore} to ${computerScore}.`);
-	} else {
-		console.log(`You draw with a score of ${humanScore} to ${computerScore}.`);
-	}
-}
+const rockB = document.createElement("button");
+const paperB = document.createElement("button");
+const scissorsB = document.createElement("button");
+
+rockB.textContent = "Rock";
+paperB.textContent = "Paper";
+scissorsB.textContent = "Scissors";
+
+rockB.addEventListener("click", () => playRound("rock", getComputerChoice()));
+paperB.addEventListener("click", () => playRound("paper", getComputerChoice()));
+scissorsB.addEventListener("click", () => playRound("scissors", getComputerChoice()));
+
+const mainDiv = document.querySelector("div");
+const displayDiv = document.createElement("div");
+
+displayDiv.textContent = humanScore;
+
+mainDiv.appendChild(rockB);
+mainDiv.appendChild(paperB);
+mainDiv.appendChild(scissorsB);
+
+mainDiv.appendChild(displayDiv);
+
